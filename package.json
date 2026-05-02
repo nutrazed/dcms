@@ -1,0 +1,41 @@
+{
+  "name": "dcms",
+  "version": "2.0.0",
+  "description": "Document Control Management System — ISO 9001/27001 Compliant",
+  "private": true,
+  "scripts": {
+    "dev":        "next dev",
+    "build":      "next build",
+    "start":      "next start",
+    "lint":       "next lint",
+    "test":       "vitest run",
+    "test:watch": "vitest",
+    "test:e2e":   "playwright test",
+    "type-check": "tsc --noEmit",
+    "db:reset":   "supabase db reset",
+    "db:push":    "supabase db push",
+    "db:types":   "supabase gen types typescript --local > src/types/database.types.ts"
+  },
+  "dependencies": {
+    "@supabase/ssr":         "^0.5.2",
+    "@supabase/supabase-js": "~2.39.0",
+    "@tanstack/react-table": "^8.20.0",
+    "next":                  "^15.0.0",
+    "react":                 "^18.3.0",
+    "react-dom":             "^18.3.0",
+    "zod":                   "^3.23.0"
+  },
+  "devDependencies": {
+    "@playwright/test":   "^1.46.0",
+    "@types/node":        "^20.0.0",
+    "@types/react":       "^18.3.0",
+    "@types/react-dom":   "^18.3.0",
+    "autoprefixer":       "^10.4.0",
+    "eslint":             "^8.57.0",
+    "eslint-config-next": "^15.0.0",
+    "postcss":            "^8.4.0",
+    "tailwindcss":        "^3.4.0",
+    "typescript":         "^5.5.0",
+    "vitest":             "^2.0.0"
+  }
+}

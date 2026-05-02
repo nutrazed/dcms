@@ -1,0 +1,154 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ─── Theme tokens ─────────────────────────────────────────────────── */
+
+:root {
+  /* Light mode (fallback) */
+  --bg-base:     250 250 250;
+  --bg-surface:  255 255 255;
+  --bg-elev:     255 255 255;
+  --bg-inset:    244 244 245;
+
+  --line:        228 228 231;
+  --line-strong: 212 212 216;
+
+  --ink:         24  24  27;
+  --ink-soft:    63  63  70;
+  --ink-mute:    113 113 122;
+  --ink-faint:   161 161 170;
+
+  --accent:        99 102 241;   /* indigo-500 */
+  --accent-hover:  79  70 229;
+  --accent-soft:   238 242 255;
+
+  --success: 34 197 94;
+  --warning: 234 179 8;
+  --danger:  239 68 68;
+}
+
+.dark {
+  /* Linear-style dark — subtle warmth, deep but not pure black */
+  --bg-base:     8   8   11;
+  --bg-surface:  17  17  21;
+  --bg-elev:     24  24  28;
+  --bg-inset:    32  32  36;
+
+  --line:        38  38  42;
+  --line-strong: 56  56  62;
+
+  --ink:         245 245 247;
+  --ink-soft:    200 200 206;
+  --ink-mute:    140 140 148;
+  --ink-faint:   90  90  98;
+
+  --accent:        129 140 248;   /* indigo-400 — pops on dark */
+  --accent-hover:  165 180 252;
+  --accent-soft:   30  30  50;
+
+  --success: 74  222 128;
+  --warning: 250 204 21;
+  --danger:  248 113 113;
+}
+
+/* ─── Base ─────────────────────────────────────────────────────────── */
+
+html {
+  color-scheme: dark;
+}
+
+html, body {
+  background: rgb(var(--bg-base));
+  color: rgb(var(--ink));
+  font-feature-settings: 'cv11', 'ss01', 'ss03';
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Components ───────────────────────────────────────────────────── */
+
+@layer components {
+  .surface {
+    @apply bg-bg-surface border border-line rounded-lg;
+  }
+
+  .surface-elev {
+    @apply bg-bg-elev border border-line rounded-lg shadow-soft;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-md text-sm font-medium
+           transition-colors duration-150
+           disabled:opacity-50 disabled:cursor-not-allowed
+           focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/50;
+  }
+
+  .btn-primary {
+    @apply btn bg-accent text-white hover:bg-accent-hover px-4 py-2;
+  }
+
+  .btn-secondary {
+    @apply btn bg-bg-elev text-ink border border-line hover:border-line-strong hover:bg-bg-inset px-4 py-2;
+  }
+
+  .btn-ghost {
+    @apply btn text-ink-soft hover:text-ink hover:bg-bg-inset px-3 py-1.5;
+  }
+
+  .btn-danger {
+    @apply btn bg-danger/10 text-danger border border-danger/20 hover:bg-danger/20 px-4 py-2;
+  }
+
+  .input {
+    @apply w-full bg-bg-inset border border-line rounded-md px-3 py-2 text-sm text-ink
+           placeholder:text-ink-faint
+           focus:outline-none focus:border-accent focus:ring-1 focus:ring-accent
+           transition-colors duration-150;
+  }
+
+  .label {
+    @apply block text-2xs font-medium uppercase tracking-wider text-ink-mute mb-1.5;
+  }
+
+  .chip {
+    @apply inline-flex items-center gap-1 rounded-md px-2 py-0.5 text-2xs font-medium ring-1 ring-inset;
+  }
+
+  .kbd {
+    @apply inline-flex items-center rounded border border-line bg-bg-inset px-1.5 py-0.5 font-mono text-2xs text-ink-mute;
+  }
+
+  .nav-link {
+    @apply flex items-center gap-2.5 rounded-md px-2.5 py-1.5 text-sm font-medium text-ink-soft
+           hover:bg-bg-inset hover:text-ink transition-colors duration-150;
+  }
+
+  .nav-link-active {
+    @apply bg-bg-inset text-ink;
+  }
+
+  .skeleton {
+    @apply rounded-md bg-bg-inset relative overflow-hidden
+           before:absolute before:inset-0
+           before:-translate-x-full
+           before:animate-[shimmer_1.6s_infinite]
+           before:bg-gradient-to-r
+           before:from-transparent before:via-white/[0.03] before:to-transparent;
+  }
+}
+
+/* ─── Scrollbar ────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar { width: 12px; height: 12px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb {
+  background: rgb(var(--line));
+  border: 3px solid rgb(var(--bg-base));
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover { background: rgb(var(--line-strong)); }
+
+/* ─── Selection ────────────────────────────────────────────────────── */
+
+::selection { background: rgb(var(--accent) / 0.3); }

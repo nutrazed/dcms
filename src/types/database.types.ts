@@ -13,6 +13,9 @@ export type UserRole          = 'admin' | 'editor' | 'reviewer' | 'viewer'
 export type ReviewerStatus    = 'pending' | 'approved' | 'rejected' | 'abstained'
 
 export interface Database {
+   __InternalSupabase: {
+    PostgrestVersion: '12'
+  }
   public: {
     Tables: {
       profiles: {
